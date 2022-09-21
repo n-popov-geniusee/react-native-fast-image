@@ -1,6 +1,7 @@
 #import "FFFastImageView.h"
 #import <SDWebImage/UIImage+MultiFormat.h>
 #import <SDWebImage/UIView+WebCache.h>
+#import "FFFastImageCacheNoParamMapper.h"
 
 @interface FFFastImageView ()
 
@@ -186,6 +187,8 @@
             case FFFCacheControlImmutable:
                 break;
         }
+
+        [[FFFastImageCacheNoParamMapper shared] add:_source.url];
 
         if (self.onFastImageLoadStart) {
             self.onFastImageLoadStart(@{});
