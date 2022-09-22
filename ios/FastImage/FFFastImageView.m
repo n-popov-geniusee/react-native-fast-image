@@ -188,7 +188,11 @@
                 break;
         }
 
-        [[FFFastImageCacheNoParamMapper shared] add:_source.url];
+        if (_source.cacheOmitURLParams) {
+             [[FFFastImageCacheNoParamMapper shared] add:_source.url];
+         } else {
+             [[FFFastImageCacheNoParamMapper shared] remove:_source.url];
+         }
 
         if (self.onFastImageLoadStart) {
             self.onFastImageLoadStart(@{});
